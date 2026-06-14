@@ -1,0 +1,17 @@
+- category: Languages
+  items:
+    - TypeScript
+    - Python
+    - Go
+
+- category: Frameworks
+  items:
+    - Astro
+    - React
+    - Node.js
+
+- category: Tools
+  items:
+    - Git
+    - Docker
+    - GitHub Actions

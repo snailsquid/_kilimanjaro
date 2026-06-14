@@ -1,0 +1,30 @@
+---
+import { loadData } from '../lib/loadData';
+import Hero from '../components/Hero.astro';
+import ExperienceList from '../components/ExperienceList.astro';
+import ProjectList from '../components/ProjectList.astro';
+import SkillList from '../components/SkillList.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+const data = loadData();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{data.profile.name} — {data.profile.title}</title>
+    <meta name="description" content={data.profile.tagline} />
+  </head>
+  <body>
+    <main>
+      <Hero profile={data.profile} />
+      <ExperienceList experience={data.experience} />
+      <ProjectList projects={data.projects} />
+      <SkillList skills={data.skills} />
+    </main>
+    <Footer profile={data.profile} />
+  </body>
+</html>

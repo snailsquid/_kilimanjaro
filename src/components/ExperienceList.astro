@@ -1,0 +1,36 @@
+---
+import type { Experience } from '../lib/schema';
+
+interface Props {
+  experience: Experience;
+}
+
+const { experience } = Astro.props;
+---
+
+<section class="experience">
+  <h2>Experience</h2>
+  <ul class="entries">
+    {
+      experience.map((job) => (
+        <li class="entry">
+          <div class="header">
+            <h3>{job.role}</h3>
+            <span class="company">{job.company}</span>
+          </div>
+          <p class="dates">
+            {job.start} — {job.current ? 'Present' : job.end}
+          </p>
+          {job.summary && <p class="summary">{job.summary}</p>}
+          {job.highlights.length > 0 && (
+            <ul class="highlights">
+              {job.highlights.map((highlight) => (
+                <li>{highlight}</li>
+              ))}
+            </ul>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</section>

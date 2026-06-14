@@ -1,0 +1,15 @@
+- name: Astro Portfolio
+  description: A YAML-driven portfolio site built with Astro and deployed to GitHub Pages.
+  url: https://example.github.io/portfolio
+  sourceUrl: https://github.com/example/portfolio
+  tags:
+    - Astro
+    - TypeScript
+    - YAML
+
+- name: CLI Toolkit
+  description: A small command-line utility for automating daily development tasks.
+  sourceUrl: https://github.com/example/cli-toolkit
+  tags:
+    - TypeScript
+    - Node.js

@@ -1,0 +1,14 @@
+---
+import type { Profile } from '../lib/schema';
+
+interface Props {
+  profile: Profile;
+}
+
+const { profile } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <p>© {year} {profile.name}. All rights reserved.</p>
+</footer>

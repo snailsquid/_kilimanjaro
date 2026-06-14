@@ -1,0 +1,16 @@
+- company: Example Corp
+  role: Senior Software Engineer
+  start: "2022-01"
+  current: true
+  summary: Building the core platform used by millions of users.
+  highlights:
+    - Led migration to a statically typed API layer
+    - Cut CI build times by 40%
+
+- company: Another Startup
+  role: Software Engineer
+  start: "2019-06"
+  end: "2021-12"
+  highlights:
+    - Shipped the first public API
+    - Mentored two junior engineers

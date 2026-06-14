@@ -1,0 +1,42 @@
+---
+import type { Projects } from '../lib/schema';
+
+interface Props {
+  projects: Projects;
+}
+
+const { projects } = Astro.props;
+---
+
+<section class="projects">
+  <h2>Projects</h2>
+  <ul class="entries">
+    {
+      projects.map((project) => (
+        <li class="entry">
+          <h3>{project.name}</h3>
+          <p>{project.description}</p>
+          {project.tags.length > 0 && (
+            <ul class="tags">
+              {project.tags.map((tag) => (
+                <li class="tag">{tag}</li>
+              ))}
+            </ul>
+          )}
+          <div class="links">
+            {project.url && (
+              <a href={project.url} target="_blank" rel="noopener noreferrer">
+                Live site
+              </a>
+            )}
+            {project.sourceUrl && (
+              <a href={project.sourceUrl} target="_blank" rel="noopener noreferrer">
+                Source
+              </a>
+            )}
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</section>

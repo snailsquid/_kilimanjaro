@@ -37,8 +37,16 @@ export const projectsSchema = z.array(
       description: z.string(),
       url: z.string().url().optional(),
       sourceUrl: z.string().url().optional(),
-      tags: z.array(z.string()).default([]),
-      image: z.string().optional(),
+      tags: z
+        .array(
+          z.object({
+            name: z.string(),
+            icon: z.string().url(),
+          })
+        )
+        .default([]),
+      image: z.string().url().optional(),
+      color: z.string().optional(),
     })
     .strict()
 );
@@ -46,8 +54,10 @@ export const projectsSchema = z.array(
 export const skillsSchema = z.array(
   z
     .object({
-      category: z.string(),
-      items: z.array(z.string()),
+      name: z.string(),
+      icon: z.string().url(),
+      categories: z.array(z.string()),
+      details: z.array(z.string()).default([]),
     })
     .strict()
 );
@@ -63,6 +73,7 @@ export type Profile = z.infer<typeof profileSchema>;
 export type Experience = z.infer<typeof experienceSchema>;
 export type Projects = z.infer<typeof projectsSchema>;
 export type Skills = z.infer<typeof skillsSchema>;
+export type Skill = Skills[number];
 
 export type DataKey = keyof typeof dataSchemas;
 export type DataMap = {

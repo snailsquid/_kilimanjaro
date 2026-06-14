@@ -1,27 +1,145 @@
 ---
 import type { Skills } from '../lib/schema';
+import SkillDetail from './SkillDetail.astro';
 
 interface Props {
   skills: Skills;
 }
 
 const { skills } = Astro.props;
+
+const allCategories = Array.from(
+  new Set(skills.flatMap((skill) => skill.categories))
+).sort();
 ---
 
 <section class="skills">
   <h2>Skills</h2>
-  <ul class="categories">
-    {
-      skills.map((category) => (
-        <li class="category">
-          <h3>{category.category}</h3>
-          <ul class="items">
-            {category.items.map((item) => (
-              <li>{item}</li>
-            ))}
-          </ul>
-        </li>
-      ))
-    }
-  </ul>
+  <div class="skills-layout">
+    <div class="skills-main">
+      <div class="skill-filters" role="group" aria-label="Skill categories">
+        <button class="filter-pill active" data-category="all" type="button">All</button>
+        {
+          allCategories.map((category) => (
+            <button class="filter-pill" data-category={category} type="button">
+              {category}
+            </button>
+          ))
+        }
+      </div>
+      <ul class="skill-grid" data-skills={JSON.stringify(skills)}>
+        {
+          skills.map((skill) => (
+            <li
+              class="skill-chip"
+              data-skill={skill.name}
+              data-categories={JSON.stringify(skill.categories)}
+              tabindex="0"
+              role="button"
+              aria-label={`Open details for ${skill.name}`}
+            >
+              <img src={skill.icon} alt="" loading="lazy" />
+              <span class="chip-label">{skill.name}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <SkillDetail skill={null} />
+  </div>
 </section>
+
+<script>
+  function initSkills() {
+    const section = document.querySelector('.skills');
+    if (!section) return;
+
+    const grid = section.querySelector('.skill-grid') as HTMLElement | null;
+    const detail = section.querySelector('.skill-detail') as HTMLElement | null;
+    const pills = section.querySelectorAll('.filter-pill');
+    const chips = section.querySelectorAll('.skill-chip');
+
+    if (!grid || !detail) return;
+
+    const skills: Array<{
+      name: string;
+      icon: string;
+      categories: string[];
+      details: string[];
+    }> = JSON.parse(grid.dataset.skills || '[]');
+
+    function renderDetail(skill: (typeof skills)[number] | null) {
+      const frame = detail!.querySelector('.detail-frame');
+      if (!frame) return;
+
+      if (!skill) {
+        detail!.setAttribute('data-empty', 'true');
+        frame.innerHTML = `
+          <div class="detail-corner top-left"></div>
+          <div class="detail-corner top-right"></div>
+          <div class="detail-corner bottom-left"></div>
+          <div class="detail-corner bottom-right"></div>
+          <div class="detail-placeholder">
+            <span class="placeholder-icon">+</span>
+            <p>Select a skill to see details.</p>
+          </div>
+        `;
+        return;
+      }
+
+      detail!.setAttribute('data-empty', 'false');
+      frame.innerHTML = `
+        <div class="detail-corner top-left"></div>
+        <div class="detail-corner top-right"></div>
+        <div class="detail-corner bottom-left"></div>
+        <div class="detail-corner bottom-right"></div>
+        <div class="detail-header">
+          <img src="${skill.icon}" alt="" loading="lazy" />
+          <h3>${skill.name}</h3>
+        </div>
+        <ul class="detail-categories">
+          ${skill.categories.map((c) => `<li class="detail-category">${c}</li>`).join('')}
+        </ul>
+        ${
+          skill.details.length > 0
+            ? `<ul class="detail-list">${skill.details.map((d) => `<li>${d}</li>`).join('')}</ul>`
+            : ''
+        }
+      `;
+    }
+
+    function filter(category: string) {
+      pills.forEach((pill) => {
+        pill.classList.toggle('active', pill.getAttribute('data-category') === category);
+      });
+
+      chips.forEach((chip) => {
+        const categories = JSON.parse(chip.getAttribute('data-categories') || '[]');
+        const visible = category === 'all' || categories.includes(category);
+        chip.classList.toggle('hidden', !visible);
+      });
+    }
+
+    pills.forEach((pill) => {
+      pill.addEventListener('click', () => {
+        filter(pill.getAttribute('data-category') || 'all');
+      });
+    });
+
+    chips.forEach((chip) => {
+      const name = chip.getAttribute('data-skill');
+      const skill = skills.find((s) => s.name === name) || null;
+
+      const activate = () => {
+        chips.forEach((c) => c.classList.remove('active'));
+        chip.classList.add('active');
+        renderDetail(skill);
+      };
+
+      chip.addEventListener('click', activate);
+      chip.addEventListener('keydown', activate as EventListener);
+    });
+  }
+
+  initSkills();
+</script>

@@ -1,0 +1,45 @@
+---
+import type { Skill } from '../lib/schema';
+
+interface Props {
+  skill: Skill | null;
+}
+
+const { skill } = Astro.props;
+---
+
+<aside class="skill-detail" data-empty={skill === null} aria-live="polite">
+  <div class="detail-frame">
+    <div class="detail-corner top-left" />
+    <div class="detail-corner top-right" />
+    <div class="detail-corner bottom-left" />
+    <div class="detail-corner bottom-right" />
+    {
+      skill ? (
+        <>
+          <div class="detail-header">
+            <img src={skill.icon} alt="" loading="lazy" />
+            <h3>{skill.name}</h3>
+          </div>
+          <ul class="detail-categories">
+            {skill.categories.map((category) => (
+              <li class="detail-category">{category}</li>
+            ))}
+          </ul>
+          {skill.details.length > 0 && (
+            <ul class="detail-list">
+              {skill.details.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          )}
+        </>
+      ) : (
+        <div class="detail-placeholder">
+          <span class="placeholder-icon">+</span>
+          <p>Select a skill to see details.</p>
+        </div>
+      )
+    }
+  </div>
+</aside>

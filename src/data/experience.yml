@@ -1,16 +1,15 @@
-- company: Example Corp
-  role: Senior Software Engineer
-  start: "2022-01"
+- company: Playcastle Studio
+  role: Intern Programmer
+  start: "2026-06"
   current: true
-  summary: Building the core platform used by millions of users.
   highlights:
-    - Led migration to a statically typed API layer
-    - Cut CI build times by 40%
+    - Implemented minigame design into game
+    - Designed flexible modular calculation system
 
-- company: Another Startup
-  role: Software Engineer
-  start: "2019-06"
-  end: "2021-12"
+- company: GIM Web
+  role: UI/UX Designer
+  start: "2026-01"
+  end: "2026-02"
   highlights:
-    - Shipped the first public API
-    - Mentored two junior engineers
+    - Designed styled UI components
+    - Created a functional unique layout design

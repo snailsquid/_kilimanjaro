@@ -10,23 +10,33 @@ const { projects } = Astro.props;
 
 <section class="projects">
   <h2>Projects</h2>
-  <ul class="entries">
+  <ul class="project-grid">
     {
       projects.map((project) => (
-        <li class="entry">
-          <h3>{project.name}</h3>
-          <p>{project.description}</p>
-          {project.tags.length > 0 && (
-            <ul class="tags">
-              {project.tags.map((tag) => (
-                <li class="tag">{tag}</li>
-              ))}
-            </ul>
-          )}
-          <div class="links">
+        <li class="project-card" style={`--card-color: ${project.color || 'var(--accent)'}`}>
+          <a href={project.url || project.sourceUrl} target="_blank" rel="noopener noreferrer" class="card-link">
+            <div class="card-image">
+              <img src={project.image} alt="" loading="lazy" />
+              <div class="card-overlay" />
+            </div>
+            <div class="card-body">
+              <h3>{project.name}</h3>
+              <p>{project.description}</p>
+              {project.tags.length > 0 && (
+                <ul class="tech-stack">
+                  {project.tags.map((tag) => (
+                    <li class="tech-icon" title={tag.name}>
+                      <img src={tag.icon} alt={tag.name} loading="lazy" />
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </a>
+          <div class="card-links">
             {project.url && (
               <a href={project.url} target="_blank" rel="noopener noreferrer">
-                Live site
+                Live
               </a>
             )}
             {project.sourceUrl && (

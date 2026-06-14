@@ -1,17 +1,102 @@
-- category: Languages
-  items:
-    - TypeScript
-    - Python
-    - Go
+- name: TypeScript
+  icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg
+  categories:
+    - Languages
+    - Frontend
+    - Backend
+  details:
+    - Built statically-typed APIs and UI components across multiple products.
+    - Introduced strict typing conventions that reduced runtime errors.
+    - Mentored teammates on advanced type patterns and generics.
 
-- category: Frameworks
-  items:
-    - Astro
-    - React
-    - Node.js
+- name: Python
+  icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg
+  categories:
+    - Languages
+    - Backend
+    - Data
+  details:
+    - Wrote data pipelines and automation scripts for internal tooling.
+    - Designed Flask and FastAPI services for high-throughput workloads.
+    - Profiled and optimized slow query paths in analytics jobs.
 
-- category: Tools
-  items:
-    - Git
-    - Docker
-    - GitHub Actions
+- name: Go
+  icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original-wordmark.svg
+  categories:
+    - Languages
+    - Backend
+  details:
+    - Built high-performance microservices and CLI tools.
+    - Implemented concurrent workers and channel-based pipelines.
+    - Reduced service latency through careful memory profiling.
+
+- name: Rust
+  icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg
+  categories:
+    - Languages
+    - Systems
+  details:
+    - Experimented with systems programming and WebAssembly modules.
+    - Used ownership model to write safe, zero-cost abstractions.
+    - Contributed to tooling that required low-level control.
+
+- name: Astro
+  icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/astro/astro-original.svg
+  categories:
+    - Frontend
+    - Frameworks
+  details:
+    - Shipped fast, content-driven sites with partial hydration.
+    - Migrated static sites from heavier frameworks to Astro.
+    - Optimized build output and Core Web Vitals scores.
+
+- name: React
+  icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg
+  categories:
+    - Frontend
+    - Frameworks
+  details:
+    - Built reusable component libraries and design systems.
+    - Integrated hooks, context, and state management solutions.
+    - Improved rendering performance through memoization and lazy loading.
+
+- name: Node.js
+  icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg
+  categories:
+    - Backend
+    - Frameworks
+  details:
+    - Developed REST and GraphQL APIs at scale.
+    - Streamed large datasets with minimal memory overhead.
+    - Maintained build tooling and package ecosystems.
+
+- name: Git
+  icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg
+  categories:
+    - Tools
+    - Workflow
+  details:
+    - Established branch strategies and code review workflows.
+    - Resolved complex merge conflicts and rebased feature branches.
+    - Taught teammates effective version control practices.
+
+- name: Docker
+  icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg
+  categories:
+    - Tools
+    - DevOps
+  details:
+    - Containerized services for consistent local and production environments.
+    - Wrote multi-stage builds to minimize image size.
+    - Orchestrated deployments with Docker Compose.
+
+- name: GitHub Actions
+  icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg
+  categories:
+    - Tools
+    - DevOps
+    - Workflow
+  details:
+    - Built CI/CD pipelines for test, build, and release automation.
+    - Cached dependencies and artifacts to speed up workflows.
+    - Integrated status checks and deployment gates.
